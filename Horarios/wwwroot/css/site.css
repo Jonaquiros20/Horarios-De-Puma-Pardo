@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Header Styles */
+header {
+    background-color: #004080; /* Azul profesional */
+    color: white;
+    padding: 10px 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+header .logo {
+    max-width: 60px;
+    max-height: 60px;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+}
+
+.intro-section {
+    background-color: #eaf3fc; /* Azul claro */
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.info-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.feature-image {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+/* Buttons */
+button {
+    background-color: #004080; /* Azul profesional */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+    button:hover {
+        background-color: #002850; /* Azul oscuro */
+        transform: scale(1.05);
+    }
+
+/* Footer Styles */
+footer {
+    background-color: #004080;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    position: relative;
+}

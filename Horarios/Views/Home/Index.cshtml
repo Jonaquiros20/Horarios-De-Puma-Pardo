@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Puma Pardo - Inicio";
+}
+
+<header>
+    <div class="header-container">
+        <h1 class="logo-text">Puma Pardo</h1>
+        <img src="/images/puma.png" alt="Logo" class="logo">
+    </div>
+</header>
+
+<main>
+    <section class="intro-section">
+        <h2>Horarios de Bus</h2>
+        <button id="consultar-btn">Consultar Horarios</button>
+    </section>
+
+    <section class="info-section">
+        <h3>¿Quieres viajar?</h3>
+        <p>
+            Reservá ya con nosotros y te llevamos a cualquier destino.
+            ¡Viajar nunca fue tan fácil y seguro con Puma Pardo!
+        </p>
+
+        <img src="/wwwroot/images/travel.jpg" alt="Imagen de viaje" class="feature-image">
+
+        <button id="reservar-btn">Consultá ya</button>
+    </section>
+</main>
+
+>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Funcionalidad para "Consultar Horarios"
+    document.getElementById("consultar-btn").addEventListener("click", function () {
+        Swal.fire({
+            title: 'Buscando horarios...',
+            icon: 'info',
+            timer: 2000,
+            showConfirmButton: false,
+            didClose: () => {
+                window.location.href = "/Home/ConsultarHorarios";
+            }
+        });
+    });
+
+    // Funcionalidad para "Consultá ya"
+    document.getElementById("reservar-btn").addEventListener("click", function () {
+        Swal.fire({
+            title: 'Redirigiendo...',
+            text: 'Cargando información de reservaciones.',
+            icon: 'info',
+            timer: 1500,
+            showConfirmButton: false,
+            didClose: () => {
+                window.location.href = "/Home/Reservar";
+            }
+        });
+    });
+</script>

@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Horarios de Bus";
+}
+
+<!-- Enlaces de Bootstrap y FontAwesome -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<header class="text-center my-4">
+    <h1 class="text-primary">Horarios de Bus</h1>
+</header>
+
+<main class="container">
+    <p class="fs-5 text-secondary">
+        ¿Qué horario deseas consultar? Ingresa la ruta o selecciona una de la lista:
+    </p>
+
+    <!-- Barra de búsqueda -->
+    <div class="mb-3">
+        <input type="text" id="searchInput" onkeyup="filterRoutes()"
+               class="form-control" placeholder="Buscar ruta...">
+    </div>
+
+    <!-- Lista de rutas -->
+    <div id="routeList" class="list-group">
+        <button class="list-group-item list-group-item-action" onclick="showSchedule('Siquirres-La Alegría')">
+            <i class="fas fa-bus text-primary me-2"></i> Siquirres-La Alegría
+        </button>
+        <button class="list-group-item list-group-item-action" onclick="showSchedule('Siquirres-Portón Iberia')">
+            <i class="fas fa-bus text-primary me-2"></i> Siquirres-Portón Iberia
+        </button>
+        <button class="list-group-item list-group-item-action" onclick="showSchedule('Siquirres-Seis Amigos')">
+            <i class="fas fa-bus text-primary me-2"></i> Siquirres-Seis Amigos
+        </button>
+        <button class="list-group-item list-group-item-action" onclick="showSchedule('Siquirres-Cairo')">
+            <i class="fas fa-bus text-primary me-2"></i> Siquirres-Cairo
+        </button>
+    </div>
+</main>
+
+<footer class="text-center bg-dark text-white py-3 mt-4">
+    <p>&copy; 2024 Puma Pardo. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    // Filtrar las rutas en la lista
+    function filterRoutes() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const routeList = document.getElementById('routeList');
+        const routes = routeList.getElementsByTagName('button');
+
+        for (let i = 0; i < routes.length; i++) {
+            const button = routes[i];
+            if (button.innerText.toLowerCase().indexOf(filter) > -1) {
+                button.style.display = '';
+            } else {
+                button.style.display = 'none';
+            }
+        }
+    }
+
+    // Mostrar los horarios según la ruta
+    function showSchedule(route) {
+        const schedules = {
+            "Siquirres-La Alegría": {
+                "entreSemana": ["6:00 AM", "8:00 AM", "12:00 PM", "4:00 PM", "6:00 PM"],
+                "domingo": ["8:00 AM", "1:00 PM", "5:00 PM"],
+                "precio": "₡500"
+            },
+            "Siquirres-Portón Iberia": {
+                "entreSemana": ["7:00 AM", "9:00 AM", "1:00 PM", "5:00 PM"],
+                "domingo": ["9:00 AM", "3:00 PM", "6:00 PM"],
+                "precio": "₡600"
+            },
+            "Siquirres-Seis Amigos": {
+                "entreSemana": ["5:30 AM", "10:30 AM", "2:30 PM", "6:30 PM"],
+                "domingo": ["10:00 AM", "4:00 PM"],
+                "precio": "₡450"
+            },
+            "Siquirres-Cairo": {
+                "entreSemana": ["6:45 AM", "11:45 AM", "3:45 PM", "7:45 PM"],
+                "domingo": ["11:00 AM", "5:00 PM"],
+                "precio": "₡700"
+            }
+        };
+
+        const schedule = schedules[route];
+        if (schedule) {
+            Swal.fire({
+                title: `Horarios: ${route}`,
+                html: `
+                    <b>Entre semana:</b>
+                    <ul>${schedule.entreSemana.map(hora => `<li>${hora}</li>`).join('')}</ul>
+                    <b>Domingo:</b>
+                    <ul>${schedule.domingo.map(hora => `<li>${hora}</li>`).join('')}</ul>
+                    <b>Precio:</b> ${schedule.precio}
+                `,
+                icon: 'info',
+                confirmButtonText: 'Cerrar',
+                confirmButtonColor: '#0d6efd'
+            });
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'No se encontraron horarios para esta ruta.',
+                icon: 'error',
+                confirmButtonText: 'Cerrar',
+                confirmButtonColor: '#e74c3c'
+            });
+        }
+    }
+</script>
